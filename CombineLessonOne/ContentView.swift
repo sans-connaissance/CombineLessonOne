@@ -6,21 +6,26 @@
 //
 
 import SwiftUI
+import Observation
 
 struct ContentView: View {
+    @Environment(DownloadViewModel.self) private var vm
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        List {
+            ForEach(vm.posts) { post in
+                VStack(alignment: .leading) {
+                    Text(post.title).bold()
+                    Text(post.body)
+                    
+                }
+            }
         }
-        .padding()
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView().environment(DownloadViewModel())
     }
 }

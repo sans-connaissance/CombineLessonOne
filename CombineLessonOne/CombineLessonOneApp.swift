@@ -9,9 +9,16 @@ import SwiftUI
 
 @main
 struct CombineLessonOneApp: App {
+    
+    @State private var vm = DownloadViewModel()
+    @State private var subscriberVM = SubscriberViewModel()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            SubscriberView()
+                .environment(vm)
+                .environment(subscriberVM)
         }
     }
 }
+
